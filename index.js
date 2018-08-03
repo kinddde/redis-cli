@@ -70,7 +70,6 @@ class client {
       })
       .finally(() => {
         process.nextTick(() => {
-          console.log(111111);
           client && client.quit();
         });
       });
