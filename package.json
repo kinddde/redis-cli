@@ -1,0 +1,25 @@
+{
+  "name": "redis-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuikangjie/redis-cli.git"
+  },
+  "keywords": ["redis"],
+  "author": "cuikangjie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cuikangjie/redis-cli/issues"
+  },
+  "homepage": "https://github.com/cuikangjie/redis-cli#readme",
+  "dependencies": {
+    "kin-promise-finally": "^1.0.0",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {}
+}
