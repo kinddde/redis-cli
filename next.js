@@ -9,7 +9,7 @@ const defaultOptions = {
   min: 2 // minimum size of the pool
 };
 
-class ClientPool {
+class RedisPool {
   constructor(config, options) {
     if (!config) {
       throw new Error("redis config can not null");
@@ -38,29 +38,13 @@ class ClientPool {
     });
   }
 
-  clientFactory(redisDB = 0) {
-    return this.redisPools.acquire().then(client => {
-      // 选择数据库
-      return new Promise((resolve, reject) => {
-        client.select(redisDB, () => {
-          resolve(client);
-        });
-      });
-    });
+  getClient() {
+    return this.redisPools.acquire();
   }
 
-  start(db) {
-    let cacheClient = null;
-    return this.clientFactory(db)
-      .then(client => {
-        cacheClient = client;
-        return client;
-      })
-      .finally(() => {
-        console.log("销毁");
-        this.redisPools.release(cacheClient);
-      });
+  releaseClient(client) {
+    this.redisPools.release(client);
   }
 }
 
-module.exports = ClientPool;
+module.exports = RedisPool;
