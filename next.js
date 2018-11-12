@@ -27,7 +27,7 @@ class RedisPool {
         return redis.createClient(this.config);
       },
       destroy: client => {
-        client.disconnect();
+        client.quit();
       }
     };
 
