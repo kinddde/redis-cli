@@ -1,28 +1,15 @@
 {
-  "name": "kin-redis-cli",
-  "version": "1.0.4",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "node test.js"
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "lerna": "^3.16.4",
+    "webpack": "^4.41.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cuikangjie/redis-cli.git"
-  },
-  "keywords": [
-    "redis"
-  ],
-  "author": "cuikangjie",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cuikangjie/redis-cli/issues"
-  },
-  "homepage": "https://github.com/cuikangjie/redis-cli#readme",
   "dependencies": {
-    "generic-pool": "^3.4.2",
-    "kin-promise-finally": "^1.0.0",
-    "redis": "^2.8.0"
-  },
-  "devDependencies": {}
+    "@kin-common/redis-client": "file:packages\\client",
+    "@kin-common/redis-pool": "file:packages\\pool"
+  }
 }
