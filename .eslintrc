@@ -1,0 +1,23 @@
+{
+    "extends": ["airbnb-base", "plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+    },
+    "globals": { "__DEV__": true, "mdui": true, "echo": true, "grecaptcha": true},
+    "rules": {
+        "import/prefer-default-export": "off",
+        "no-unused-vars": "warn",
+        "no-console": "off",
+        "no-unused-expressions": "off",
+        "no-param-reassign": "off",
+        "prefer-promise-reject-errors": "off"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+
+    "plugins": ["prettier"],
+    "parser": "babel-eslint"
+}

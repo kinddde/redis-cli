@@ -1,0 +1,34 @@
+{
+  "name": "@kin-common/redis-pool",
+  "version": "0.0.1",
+  "description": "redis pool ",
+  "keywords": [
+    "redis",
+    "pool"
+  ],
+  "author": "kin <cuikangjie_90h@126.com>",
+  "homepage": "https://github.com/cuikangjie/redis-cli/tree/master/packages/pool#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuikangjie/redis-cli.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/cuikangjie/redis-cli/issues"
+  },
+  "dependencies": {
+    "generic-pool": "^3.7.1",
+    "redis": "^2.8.0"
+  }
+}
