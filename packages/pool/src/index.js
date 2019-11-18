@@ -1,6 +1,6 @@
-const genericPool = require("generic-pool");
+import redis from "redis";
 
-const redis = require("redis");
+import genericPool from "generic-pool";
 
 const defaultOptions = {
   max: 10, // maximum size of the pool
@@ -45,4 +45,4 @@ class RedisPool {
   }
 }
 
-module.exports = RedisPool;
+export default RedisPool;
