@@ -1,4 +1,4 @@
-# `client`
+# redis-client
 
 > TODO: description
 

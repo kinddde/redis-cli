@@ -10,41 +10,45 @@ const rimraf = require("rimraf");
 const path = require("path");
 
 const clentFile = (pattern, ignore) => {
-  return new Promise((resolve, reject) => {
-    rimraf(
-      pattern,
-      { glob: { nosort: true, dot: true, ignore: ignore || [] } },
-      (err, result) => {
-        err ? reject(err) : resolve(result);
-      }
-    );
-  });
+    return new Promise((resolve, reject) => {
+        rimraf(
+            pattern,
+            { glob: { nosort: true, dot: true, ignore: ignore || [] } },
+            (err, result) => {
+                err ? reject(err) : resolve(result);
+            }
+        );
+    });
 };
 
 const build = package => {
-  return new Promise(async resolve => {
-    await clentFile(
-      path.resolve(__dirname, "../packages/" + package + "/lib/**")
-    );
+    return new Promise(async resolve => {
+        await clentFile(
+            path.resolve(__dirname, "../packages/" + package + "/lib/**")
+        );
 
-    let config = resolveConfig(package, true);
+        const list = Object.keys(
+            require(`../packages/${package}/package.json`).dependencies
+        );
 
-    const compiler = webpack(config);
+        let config = resolveConfig(package, true, list);
 
-    createCompilation(package, compiler, resolve);
+        const compiler = webpack(config);
 
-    compiler.run();
-  });
+        createCompilation(package, compiler, resolve);
+
+        compiler.run();
+    });
 };
 
 async function run() {
-  const pkgs = globby.sync(["packages/*"], { deep: 1, onlyFiles: false });
+    const pkgs = globby.sync(["packages/*"], { deep: 1, onlyFiles: false });
 
-  for (let pkg of pkgs) {
-    let package = pkg.replace("packages/", "");
+    for (let pkg of pkgs) {
+        let package = pkg.replace("packages/", "");
 
-    await build(package);
-  }
+        await build(package);
+    }
 }
 
 run();

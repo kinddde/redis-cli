@@ -5,27 +5,34 @@ import RedisPool from "@kin-common/redis-pool";
 let redisPool;
 let redisconf;
 let poolconf;
+
 function initRedis() {
     if (!redisconf) {
         throw new Error("redis config, please use pool.setConfig({...})");
-        return;
+    }
+
+    if (redisPool) {
+        return redisPool;
     }
     redisPool = new RedisPool(redisconf, poolconf);
+
+    return redisPool;
 }
 
 export default {
     start: () =>
-        redisPool.getClient().then(client => asyncRedis.decorate(client)),
+        initRedis()
+            .getClient()
+            .then(client => asyncRedis.decorate(client)),
 
     release: client => {
-        redisPool.releaseClient(client);
+        initRedis().releaseClient(client);
     },
 
-    getClient: () => redisPool.getClient(),
+    getClient: () => initRedis().getClient(),
 
     setConfig: (redisConf, poolConf) => {
         redisconf = redisConf;
         poolconf = poolConf;
-        initRedis();
     },
 };

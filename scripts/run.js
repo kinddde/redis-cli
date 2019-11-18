@@ -12,12 +12,16 @@ const { package, mode } = argvs;
 
 const isBuild = mode === "production";
 
-let config = resolveConfig(package, isBuild);
+const list = Object.keys(
+    require(`../packages/${package}/package.json`).dependencies
+);
+
+let config = resolveConfig(package, isBuild, list);
 
 const compiler = webpack(config);
 
 createCompilation(package, compiler, () => {
-  restart(package);
+    restart(package);
 });
 
 compiler.watch({}, () => {});
