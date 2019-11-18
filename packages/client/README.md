@@ -14,7 +14,7 @@ const client = require('@kin-common/redis-client');
 // TODO: DEMONSTRATE API
 ```
 
--   [String](/docs/string.md)
--   [Set](/docs/set.md)
--   [Hash](/docs/hash.md)
--   [Key](/docs/key.md)
+-   [String](docs/string.md)
+-   [Set](docs/set.md)
+-   [Hash](docs/hash.md)
+-   [Key](docs/key.md)
