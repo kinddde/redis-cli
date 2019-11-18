@@ -1,6 +1,6 @@
 {
   "name": "@kin-common/redis-pool",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "redis pool ",
   "keywords": [
     "redis",
