@@ -1,10 +1,6 @@
 {
-    "packages": [
-        "packages/*"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
+    "packages": ["packages/*"],
+
     "npmClient": "yarn",
     "version": "0.0.6"
 }

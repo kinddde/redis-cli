@@ -1,35 +1,38 @@
 {
-  "name": "@kin-common/redis-pool",
-  "version": "0.0.6",
-  "description": "redis pool ",
-  "keywords": [
-    "redis",
-    "pool"
-  ],
-  "author": "kin <cuikangjie_90h@126.com>",
-  "homepage": "https://github.com/cuikangjie/redis-cli/tree/master/packages/pool#readme",
-  "license": "ISC",
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cuikangjie/redis-cli.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "bugs": {
-    "url": "https://github.com/cuikangjie/redis-cli/issues"
-  },
-  "dependencies": {
-    "generic-pool": "^3.7.1",
-    "redis": "^2.8.0"
-  },
-  "gitHead": "a3ae2ec0b7a12d9dc597d17a9be16bfee0663f41"
+    "name": "@kin-common/redis-pool",
+    "version": "0.0.6",
+    "description": "redis pool ",
+    "publishConfig": {
+        "access": "public"
+    },
+    "keywords": [
+        "redis",
+        "pool"
+    ],
+    "author": "kin <cuikangjie_90h@126.com>",
+    "homepage": "https://github.com/cuikangjie/redis-cli/tree/master/packages/pool#readme",
+    "license": "ISC",
+    "main": "lib/index.js",
+    "directories": {
+        "lib": "lib",
+        "test": "__tests__"
+    },
+    "files": [
+        "lib"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cuikangjie/redis-cli.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: run tests from root\" && exit 1"
+    },
+    "bugs": {
+        "url": "https://github.com/cuikangjie/redis-cli/issues"
+    },
+    "dependencies": {
+        "generic-pool": "^3.7.1",
+        "redis": "^2.8.0"
+    },
+    "gitHead": "6821412f19e6f58eb515a6374b15197ad9a17b5f"
 }
