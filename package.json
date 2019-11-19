@@ -28,7 +28,8 @@
         "dev:pool": "node scripts/run.js --mode=development --package=pool",
         "dev:client": "node scripts/run.js --mode=development --package=client",
         "build": "node scripts/build.js",
-        "doc": "node scripts/doc.js"
+        "doc": "node scripts/doc.js",
+        "prepublish": "yarn run build"
     },
     "dependencies": {}
 }
