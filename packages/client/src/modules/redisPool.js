@@ -1,3 +1,8 @@
+/**
+ * redis pool
+ * @module pool
+ */
+
 import asyncRedis from "async-redis";
 
 import RedisPool from "@kin-common/redis-pool";
@@ -31,6 +36,11 @@ export default {
 
     getClient: () => initRedis().getClient(),
 
+    /**
+     * 设置redis连接参数
+     * @param {object} redisConf https://github.com/NodeRedis/node_redis#options-object-properties
+     * @param {object}  poolConf  https://github.com/coopernurse/node-pool#createpool
+     */
     setConfig: (redisConf, poolConf) => {
         redisconf = redisConf;
         poolconf = poolConf;

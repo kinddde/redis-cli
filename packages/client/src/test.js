@@ -1,4 +1,7 @@
-const { pool, selectDB, client } = require(".");
+const { pool } = require(".");
+// import { pool } from ".";
+
+console.log(pool);
 
 const config = {
     host: "127.0.0.1",
@@ -15,15 +18,15 @@ const poolConf = {
     evictionRunIntervalMillis: 1000 * 30, // 对pool进行逐出检查 10分钟
 };
 
-pool.setConfig(config, poolConf);
-
-const client2 = selectDB(12);
-
-console.log(client);
-
-client2
-    .sadd(12, "test2", 1, { a: 1 }, [1, 2, 3])
-    .then(console.log)
-    .catch(err => {
-        console.log("error", err);
-    });
+// pool.setConfig(config, poolConf);
+//
+// const client2 = selectDB(12);
+//
+// console.log(client);
+//
+// client2
+//     .sadd(12, "test2", 1, { a: 1 }, [1, 2, 3])
+//     .then(console.log)
+//     .catch(err => {
+//         console.log("error", err);
+//     });

@@ -1,7 +1,10 @@
 import { mapValues } from "lodash";
+
 import _pool from "./modules/redisPool";
 
 import * as _client from "./modules";
+
+export * from "./modules";
 
 export { _pool as pool };
 
@@ -13,4 +16,4 @@ export const selectDB = db => {
     });
 };
 
-export { _client as client };
+export default { ..._client, pool: _pool, selectDB };
