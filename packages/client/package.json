@@ -13,7 +13,7 @@
     "author": "kin <cuikangjie_90h@126.com>",
     "homepage": "https://github.com/cuikangjie/redis-cli/tree/master/packages/client#readme",
     "license": "ISC",
-    "main": "lib/client.js",
+    "main": "lib/index.js",
     "directories": {
         "lib": "lib",
         "test": "__tests__"
