@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@kin-common/redis-pool@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/@kin-common/redis-pool/-/redis-pool-0.0.8.tgz#bef56f09a3a9e239b5c4bd4417ebbb4051236d31"
+  integrity sha512-vBVaab/LrMZSt4hOc4HOjWUb1KyE2BeFhjs0Q0wG65gJ5k+aZiyE+Noj/gLOOChNlBRqT9i7yZzFIyHnLUrQWg==
+  dependencies:
+    generic-pool "^3.7.1"
+    redis "^2.8.0"
+
 async-redis@^1.1.7:
   version "1.1.7"
   resolved "https://registry.npmjs.org/async-redis/-/async-redis-1.1.7.tgz#d9e236afa594bdc7b6e00f5b03f1d2304c017d50"
@@ -14,6 +22,11 @@ double-ended-queue@^2.1.0-0:
   version "2.1.0-0"
   resolved "https://registry.npmjs.org/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz#103d3527fd31528f40188130c841efdd78264e5c"
   integrity sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
+
+generic-pool@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.npmjs.org/generic-pool/-/generic-pool-3.7.1.tgz#36fe5bb83e7e0e032e5d32cd05dc00f5ff119aa8"
+  integrity sha512-ug6DAZoNgWm6q5KhPFA+hzXfBLFQu5sTXxPpv44DmE0A2g+CiHoq9LTVdkXpZMkYVMoGw83F6W+WT0h0MFMK/w==
 
 lodash@^4.17.15:
   version "4.17.15"
