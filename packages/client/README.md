@@ -23,6 +23,7 @@
 -   [String](docs/string.md)
 -   [Set](docs/set.md)
 -   [Hash](docs/hash.md)
+-   [List](docs/list.md)
 -   [Key](docs/key.md)
 
 ## 扩展(todo)

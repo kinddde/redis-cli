@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const path = require("path");
 
-const keys = ["string", "key", "set", "hash", "redisPool"];
+const keys = ["string", "key", "set", "hash", "redisPool", "list"];
 
 function build(module) {
     return jsdoc2md

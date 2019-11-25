@@ -1,7 +1,5 @@
-const { pool } = require(".");
+const { pool, selectDB, publish, subscribe } = require(".");
 // import { pool } from ".";
-
-console.log(pool);
 
 const config = {
     host: "127.0.0.1",
@@ -10,7 +8,7 @@ const config = {
 };
 
 const poolConf = {
-    min: 20,
+    min: 3,
     max: 100,
     maxWaitingClients: 20,
     acquireTimeoutMillis: 3000, // 在超时前等待资源的最长毫秒数
@@ -18,15 +16,25 @@ const poolConf = {
     evictionRunIntervalMillis: 1000 * 30, // 对pool进行逐出检查 10分钟
 };
 
-// pool.setConfig(config, poolConf);
-//
-// const client2 = selectDB(12);
-//
-// console.log(client);
-//
-// client2
-//     .sadd(12, "test2", 1, { a: 1 }, [1, 2, 3])
-//     .then(console.log)
-//     .catch(err => {
-//         console.log("error", err);
-//     });
+pool.setConfig(config, poolConf);
+
+async function run() {
+    subscribe("test_2", () => {
+        console.log(2);
+    });
+
+    subscribe("test_3", data => {
+        console.log(data);
+    });
+    const cancel = await subscribe("test_1", () => {
+        console.log(1);
+    });
+
+    setTimeout(() => {
+        setTimeout(() => {
+            publish("test_1", { a: 1 });
+        }, 1000);
+    }, 1000);
+}
+
+run();
