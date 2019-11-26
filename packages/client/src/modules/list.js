@@ -43,3 +43,13 @@ export const rpop = (db, key) => {
 export const rpush = (db, key, ...vals) => {
     return methodFactory("rpush", db, key, ...vals.map(encode));
 };
+
+/**
+ * 获取列表长度
+ * @param  {number} db  数据库
+ * @param  {string} key key
+ * @return {Promise}
+ */
+export const llen = (db, key) => {
+    return methodFactory("llen", db, key);
+};

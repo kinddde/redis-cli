@@ -3,8 +3,6 @@
  * @module pool
  */
 
-import asyncRedis from "async-redis";
-
 import RedisPool from "@kin-common/redis-pool";
 
 let redisPool;
@@ -25,11 +23,6 @@ function initRedis() {
 }
 
 export default {
-    start: () =>
-        initRedis()
-            .getClient()
-            .then(client => asyncRedis.decorate(client)),
-
     release: client => {
         initRedis().releaseClient(client);
     },

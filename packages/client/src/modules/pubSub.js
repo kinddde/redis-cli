@@ -1,14 +1,17 @@
-import asyncRedis from "async-redis";
+// import asyncRedis from "async-redis";
 import pool from "./redisPool";
+
+import { exchange } from "./factory";
 
 import { decode, encode } from "./util";
 
 export const publish = async (key, value) => {
-    let client = await pool.getClient();
+    const client = await pool.getClient();
 
-    client = asyncRedis.decorate(client);
+    // client = asyncRedis.decorate(client);
+    const fun = exchange(client, "publish");
 
-    return client.publish(key, value ? encode(value) : "").finally(() => {
+    return fun(key, value ? encode(value) : "").finally(() => {
         pool.release(client);
     });
 };
@@ -17,30 +20,29 @@ let subClient;
 export const subscribe = async (event, callback = () => {}) => {
     if (!subClient) {
         subClient = await pool.getClient();
-
-        subClient = asyncRedis.decorate(subClient);
     }
+    return new Promise(resolve => {
+        subClient.on("subscribe", channel => {
+            if (event === channel) {
+                resolve();
+            }
+        });
 
-    subClient.on("subscribe", (channel, count) => {
-        event === channel &&
-            console.log(`redis client subscribe `, channel, count);
+        subClient.on("message", (channel, message) => {
+            event === channel && callback(message ? decode(message) : message);
+        });
+
+        subClient.on("unsubscribe", (channel, count) => {
+            if (count === 0) {
+                pool.release(subClient);
+            }
+        });
+
+        subClient.subscribe(event);
+
+        // 返回取消方法
+        return () => {
+            subClient.unsubscribe(event);
+        };
     });
-
-    subClient.on("message", (channel, message) => {
-        event === channel && callback(decode(message));
-    });
-
-    subClient.on("unsubscribe", (channel, count) => {
-        if (count === 0) {
-            pool.release(subClient);
-        }
-        event === channel && console.log(`redis client unsubscribe `, channel);
-    });
-
-    subClient.subscribe(event);
-
-    // 返回取消方法
-    return () => {
-        subClient.unsubscribe(event);
-    };
 };

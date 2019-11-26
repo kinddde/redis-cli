@@ -1,4 +1,4 @@
-const { pool, selectDB, publish, subscribe } = require(".");
+const { pool, publish, subscribe, MessageQueue } = require(".");
 // import { pool } from ".";
 
 const config = {
@@ -18,23 +18,40 @@ const poolConf = {
 
 pool.setConfig(config, poolConf);
 
+function sleep() {
+    return new Promise(resolve => setTimeout(resolve, 3000));
+}
+
 async function run() {
-    subscribe("test_2", () => {
-        console.log(2);
-    });
+    // await subscribe("test_1", () => {
+    //     console.log(1);
+    // });
+    //
+    // await subscribe("test_2", () => {
+    //     console.log(2);
+    // });
+    //
+    // await subscribe("test_1", () => {
+    //     console.log(3);
+    // });
+    // setTimeout(() => {
+    //     publish("test_1");
+    // }, 1000);
 
-    subscribe("test_3", data => {
-        console.log(data);
-    });
-    const cancel = await subscribe("test_1", () => {
-        console.log(1);
-    });
+    const queue = new MessageQueue("message_test_queue", 4);
 
-    setTimeout(() => {
-        setTimeout(() => {
-            publish("test_1", { a: 1 });
-        }, 1000);
-    }, 1000);
+    await queue.listenerSleep(
+        async data => {
+            console.log(data);
+
+            await sleep();
+        },
+        () => {
+            console.log("执行完成");
+        }
+    );
+    await queue.enqueue("a", "b");
+    // queue.dequeue().then(console.log);
 }
 
 run();
