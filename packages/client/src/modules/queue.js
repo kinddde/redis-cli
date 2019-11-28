@@ -6,7 +6,7 @@ import { lpop, rpush, lpush, llen } from "./list";
 
 import { subscribe, publish } from "./pubSub";
 
-class MessageQueue {
+export default class MessageQueue {
     constructor(event, db = 0) {
         if (!event) {
             throw new Error(`MessageQueue event is null`);
@@ -16,10 +16,22 @@ class MessageQueue {
         this.selectDb = db;
 
         this.type = `message_queue_start`;
+
+        this.running = false;
     }
 
     async enqueue(...vals) {
         await rpush(this.selectDb, this.eventName, ...vals).catch(() => false);
+
+        return publish(this.eventName, this.type).catch(() => false);
+    }
+
+    /**
+     * 优先插入
+     * @return {Promise} [description]
+     */
+    async enqueuePriority(...vals) {
+        await lpush(this.selectDb, this.eventName, ...vals).catch(() => false);
 
         return publish(this.eventName, this.type).catch(() => false);
     }
@@ -40,6 +52,42 @@ class MessageQueue {
         return llen(this.selectDb, this.eventName).catch(() => 0);
     }
 
+    /* eslint-disable */
+    _listener_(listener, complated) {
+        const self = this;
+
+        async function callback(param) {
+            // running 防止重复开始执行
+
+            if (param !== self.type || self.running) {
+                return;
+            }
+
+            self.running = true;
+
+            let flag = false;
+            let promises = [];
+
+            while (!flag) {
+                flag = await self.isEmpty();
+
+                if (!flag) {
+                    const data = await self.dequeue();
+
+                    await listener(data, promises);
+                }
+            }
+
+            self.running = false;
+
+            await Promise.all(promises).then(complated);
+
+            promises = [];
+        }
+
+        return subscribe(this.eventName, callback).catch(() => false);
+    }
+
     /**
      * 同步执行的方法
      * @param  {[type]} [run=()       =>            {}] [description]
@@ -49,27 +97,15 @@ class MessageQueue {
     listenerSync(run = () => {}, complated = () => {}) {
         const self = this;
 
-        async function callback(param) {
-            if (param !== self.type) {
-                return;
-            }
-            let flag = false;
+        function runCallBack(data, promises) {
+            let pro = run(data);
 
-            /* eslint-disable */
-            while (!flag) {
-                flag = await self.isEmpty();
+            promises.push(pro);
 
-                if (!flag) {
-                    const data = await self.dequeue();
-
-                    await run(data);
-                }
-            }
-
-            complated();
+            return pro;
         }
 
-        return subscribe(this.eventName, callback).catch(() => false);
+        return self._listener_(runCallBack, complated);
     }
 
     /**
@@ -81,28 +117,11 @@ class MessageQueue {
     listener(run = () => {}, complated = () => {}) {
         const self = this;
 
-        async function callback(param) {
-            if (param !== self.type) {
-                return;
-            }
-            let flag = false;
-
-            /* eslint-disable */
-            let promises = [];
-            while (!flag) {
-                flag = await self.isEmpty();
-
-                if (!flag) {
-                    const data = await self.dequeue();
-
-                    promises.push(run(data));
-                }
-            }
-
-            Promise.all(promises).then(complated);
+        function runCallBack(data, promises) {
+            promises.push(run(data));
         }
 
-        return subscribe(this.eventName, callback).catch(() => false);
+        return self._listener_(runCallBack, complated);
     }
 
     /**
@@ -112,32 +131,23 @@ class MessageQueue {
      * @param  {Number} [sleep=300]   [description]
      * @return {[type]}               [description]
      */
-    listenerSleep(run = () => {}, complated = () => {}, sleep = 300) {
+    listenerSleep(run = () => {}, complated = () => {}, sleep = 2000) {
         const self = this;
 
-        async function callback(param) {
-            if (param !== self.type) {
-                return;
-            }
-            let flag = false;
+        function runCallBack(data, list) {
+            return new Promise(resolve => {
+                let timer = setTimeout(resolve, sleep);
 
-            /* eslint-disable */
-            let promises = [];
-            while (!flag) {
-                flag = await self.isEmpty();
+                list.push(
+                    run(data).finally(() => {
+                        resolve();
 
-                if (!flag) {
-                    const data = await self.dequeue();
-
-                    promises.push(run(data));
-                }
-            }
-
-            Promise.all(promises).then(complated);
+                        timer && clearTimeout(timer);
+                    })
+                );
+            });
         }
 
-        return subscribe(this.eventName, callback).catch(() => false);
+        return self._listener_(runCallBack, complated);
     }
 }
-
-export default MessageQueue;

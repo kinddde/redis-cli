@@ -32,5 +32,3 @@ export default {
     subscribe,
     MessageQueue: _MessageQueue,
 };
-
-require("./test");

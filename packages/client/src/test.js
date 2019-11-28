@@ -23,24 +23,9 @@ function sleep() {
 }
 
 async function run() {
-    // await subscribe("test_1", () => {
-    //     console.log(1);
-    // });
-    //
-    // await subscribe("test_2", () => {
-    //     console.log(2);
-    // });
-    //
-    // await subscribe("test_1", () => {
-    //     console.log(3);
-    // });
-    // setTimeout(() => {
-    //     publish("test_1");
-    // }, 1000);
-
     const queue = new MessageQueue("message_test_queue", 4);
 
-    await queue.listenerSleep(
+    await queue.listenerSync(
         async data => {
             console.log(data);
 
@@ -50,7 +35,9 @@ async function run() {
             console.log("执行完成");
         }
     );
-    await queue.enqueue("a", "b");
+
+    await queue.enqueue("a");
+    await queue.enqueue("b");
     // queue.dequeue().then(console.log);
 }
 
