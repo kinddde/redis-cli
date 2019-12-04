@@ -32,6 +32,16 @@ export const get = async (db, key) => {
 };
 
 /**
+ * 获取所有(一个或多个)给定 key 的值。
+ * @param  {number}  db   数据库
+ * @param  {string}  keys key1, key2, key3
+ * @return {Promise}
+ */
+export const mget = async (db, ...keys) => {
+    return methodFactory("mget", db, ...keys).then(data => data.map(decode));
+};
+
+/**
  * 写入的数字 +1
  * @param  {number}  db  数据库
  * @param  {string}  key 键
