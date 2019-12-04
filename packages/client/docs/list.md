@@ -14,6 +14,9 @@
 <dt><a href="#rpush">rpush</a> ⇒ <code>Promise</code></dt>
 <dd><p>在列表中添加一个或多个值</p>
 </dd>
+<dt><a href="#llen">llen</a> ⇒ <code>Promise</code></dt>
+<dd><p>获取列表长度</p>
+</dd>
 </dl>
 
 <a name="lpop"></a>
@@ -69,4 +72,16 @@
 | db | <code>number</code> | 数据库 |
 | key | <code>string</code> | key |
 | vals | <code>any</code> | val1,val2,val3 |
+
+<a name="llen"></a>
+
+## llen ⇒ <code>Promise</code>
+获取列表长度
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| db | <code>number</code> | 数据库 |
+| key | <code>string</code> | key |
 
