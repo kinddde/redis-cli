@@ -1,4 +1,4 @@
-import { forIn, toPairs } from "lodash";
+import { forIn, toPairs, flatten } from "lodash";
 import { methodFactory } from "./factory";
 import { encode, decode } from "./util";
 
@@ -68,11 +68,11 @@ export const hget = async (db, key, field) => {
  * @return {Promise}
  */
 export const hmset = async (db, key, obj) => {
-    const ls = toPairs(obj)
-        .map(([field, value]) => {
+    const ls = flatten(
+        toPairs(obj).map(([field, value]) => {
             return [field, decode(value)];
         })
-        .flat(1);
+    );
 
     return methodFactory("hmset", db, key, ...ls);
 };
