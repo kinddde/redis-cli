@@ -8,6 +8,9 @@
 <dt><a href="#get">get</a> ⇒ <code>Promise</code></dt>
 <dd><p>获取字符串</p>
 </dd>
+<dt><a href="#mget">mget</a> ⇒ <code>Promise</code></dt>
+<dd><p>获取所有(一个或多个)给定 key 的值。</p>
+</dd>
 <dt><a href="#incr">incr</a> ⇒ <code>Promise</code></dt>
 <dd><p>写入的数字 +1</p>
 </dd>
@@ -41,6 +44,18 @@
 | --- | --- | --- |
 | db | <code>number</code> | 数据库 |
 | key | <code>string</code> | 键 |
+
+<a name="mget"></a>
+
+## mget ⇒ <code>Promise</code>
+获取所有(一个或多个)给定 key 的值。
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| db | <code>number</code> | 数据库 |
+| keys | <code>string</code> | key1, key2, key3 |
 
 <a name="incr"></a>
 
