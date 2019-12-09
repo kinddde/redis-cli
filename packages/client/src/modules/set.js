@@ -44,6 +44,26 @@ export const smembers = async (db, key) => {
 };
 
 /**
+ * 返回所有给定集合的并集
+ * @param  {number}  db   数据库
+ * @param  {string}  keys key1, key2, key3
+ * @return {Promise}
+ */
+export const sunion = async (db, ...keys) => {
+    return methodFactory("sunion", db, ...keys).then(res => res.map(decode));
+};
+
+/**
+ * 返回给定所有集合的交集
+ * @param  {number}  db   数据库
+ * @param  {string}  keys key1, key2, key3
+ * @return {Promise}
+ */
+export const sinter = async (db, ...keys) => {
+    return methodFactory("sinter", db, ...keys).then(res => res.map(decode));
+};
+
+/**
  * 移除并返回集合中的一个随机元素
  * @param  {number}  db  数据库
  * @param  {string}  key key

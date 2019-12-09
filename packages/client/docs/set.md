@@ -14,6 +14,12 @@
 <dt><a href="#smembers">smembers</a> ⇒ <code>Promise</code></dt>
 <dd><p>返回集合中的所有成员</p>
 </dd>
+<dt><a href="#sunion">sunion</a> ⇒ <code>Promise</code></dt>
+<dd><p>返回所有给定集合的并集</p>
+</dd>
+<dt><a href="#sinter">sinter</a> ⇒ <code>Promise</code></dt>
+<dd><p>返回给定所有集合的交集</p>
+</dd>
 <dt><a href="#spop">spop</a> ⇒ <code>Promise</code></dt>
 <dd><p>移除并返回集合中的一个随机元素</p>
 </dd>
@@ -71,6 +77,30 @@
 | --- | --- | --- |
 | db | <code>Number</code> | [数据库] |
 | key | <code>string</code> | [key] |
+
+<a name="sunion"></a>
+
+## sunion ⇒ <code>Promise</code>
+返回所有给定集合的并集
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| db | <code>number</code> | 数据库 |
+| keys | <code>string</code> | key1, key2, key3 |
+
+<a name="sinter"></a>
+
+## sinter ⇒ <code>Promise</code>
+返回给定所有集合的交集
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| db | <code>number</code> | 数据库 |
+| keys | <code>string</code> | key1, key2, key3 |
 
 <a name="spop"></a>
 
