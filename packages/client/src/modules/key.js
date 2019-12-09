@@ -7,11 +7,11 @@ import { methodFactory } from "./factory";
 /**
  * 删除指定key
  * @param  {number}  db  数据库
- * @param  {string}  key key
+ * @param  {string}  key key1,key2, key3
  * @return {Promise}
  */
-export const del = async (db, key) => {
-    return methodFactory("del", db, key);
+export const del = async (db, ...keys) => {
+    return methodFactory("del", db, ...keys);
 };
 
 /**

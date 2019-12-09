@@ -29,7 +29,7 @@
 | Param | Type | Description |
 | --- | --- | --- |
 | db | <code>number</code> | 数据库 |
-| key | <code>string</code> | key |
+| key | <code>string</code> | key1,key2, key3 |
 
 <a name="exists"></a>
 
