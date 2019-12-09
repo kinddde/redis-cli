@@ -70,7 +70,7 @@ export const hget = async (db, key, field) => {
 export const hmset = async (db, key, obj) => {
     const ls = flatten(
         toPairs(obj).map(([field, value]) => {
-            return [field, decode(value)];
+            return [field, encode(value)];
         })
     );
 
