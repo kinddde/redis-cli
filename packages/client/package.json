@@ -1,6 +1,6 @@
 {
     "name": "@kin-common/redis-client",
-    "version": "0.0.16",
+    "version": "0.0.17",
     "description": "redis pool client",
     "publishConfig": {
         "access": "public"
@@ -32,7 +32,7 @@
         "url": "https://github.com/cuikangjie/redis-cli/issues"
     },
     "dependencies": {
-        "@kin-common/redis-pool": "^0.0.16",
+        "@kin-common/redis-pool": "^0.0.17",
         "lodash": "^4.17.15"
     },
     "gitHead": "20e305544955c5c5be876ce6e1581ca49e6eb20c"

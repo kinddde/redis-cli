@@ -1,6 +1,6 @@
 {
     "name": "@kin-common/redis-pool",
-    "version": "0.0.16",
+    "version": "0.0.17",
     "description": "redis pool ",
     "publishConfig": {
         "access": "public"
