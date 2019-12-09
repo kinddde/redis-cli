@@ -10,12 +10,12 @@ import { decode, encode } from "./util";
  * @param  {any}  value 发送的消息
  * @return {Promise}
  */
-export const publish = async (key, value) => {
+export const publish = async (key, value = {}) => {
     const client = await pool.getClient();
 
     const fun = exchange(client, "publish");
 
-    return fun(key, value ? encode(value) : "").finally(() => {
+    return fun(key, encode(value)).finally(() => {
         pool.release(client);
     });
 };
