@@ -1,5 +1,4 @@
-const { pool, publish, subscribe, MessageQueue } = require(".");
-// import { pool } from ".";
+const { pool, del, set } = require(".");
 
 const config = {
     host: "127.0.0.1",
@@ -18,27 +17,11 @@ const poolConf = {
 
 pool.setConfig(config, poolConf);
 
-function sleep() {
-    return new Promise(resolve => setTimeout(resolve, 3000));
-}
-
 async function run() {
-    const queue = new MessageQueue("message_test_queue", 4);
-
-    await queue.listenerSync(
-        async data => {
-            console.log(data);
-
-            await sleep();
-        },
-        () => {
-            console.log("执行完成");
-        }
-    );
-
-    await queue.enqueue("a");
-    await queue.enqueue("b");
-    // queue.dequeue().then(console.log);
+    // await set(0, "a", 1);
+    //
+    // await set(0, "b", 1);
+    await del(0, "a", "b").then(console.log);
 }
 
 run();
