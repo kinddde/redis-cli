@@ -9,7 +9,6 @@ import { encode, decode } from "./util";
  * @return {Promise}
  */
 export const sadd = async (db, key, ...members) => {
-    console.log(members);
 
     return methodFactory("sadd", db, key, ...members.map(encode));
 };

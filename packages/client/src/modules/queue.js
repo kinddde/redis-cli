@@ -37,9 +37,7 @@ export default class MessageQueue {
     }
 
     dequeue() {
-        return lpop(this.selectDb, this.eventName).catch(err => {
-            console.log(err);
-
+        return lpop(this.selectDb, this.eventName).catch(() => {
             return false;
         });
     }
