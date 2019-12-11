@@ -1,6 +1,6 @@
 {
     "name": "@kin-common/redis-client",
-    "version": "0.0.19",
+    "version": "0.0.20",
     "description": "redis pool client",
     "publishConfig": {
         "access": "public"
@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@babel/runtime-corejs3": "^7.7.6",
-        "@kin-common/redis-pool": "^0.0.19",
+        "@kin-common/redis-pool": "^0.0.20",
         "lodash": "^4.17.15"
     },
     "gitHead": "20e305544955c5c5be876ce6e1581ca49e6eb20c"
