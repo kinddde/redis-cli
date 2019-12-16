@@ -12,7 +12,11 @@ export const methodFactory = async (method, db, ...args) => {
 
     const fun = exchange(client, method);
 
-    return fun(...args).catch(err => {
-        return Promise.reject(err);
-    });
+    return fun(...args)
+        .catch(err => {
+            return Promise.reject(err);
+        })
+        .finally(() => {
+            pool.release(client);
+        });
 };

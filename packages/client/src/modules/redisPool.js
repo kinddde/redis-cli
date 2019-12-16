@@ -38,4 +38,8 @@ export default {
         redisconf = redisConf;
         poolconf = poolConf;
     },
+
+    getPool: () => {
+        return initRedis();
+    },
 };

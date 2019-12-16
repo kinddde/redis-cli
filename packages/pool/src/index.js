@@ -19,6 +19,10 @@ class RedisPool {
         this.initPoll();
     }
 
+    getPool() {
+        return this.redisPools;
+    }
+
     initPoll() {
         const factory = {
             create: () => {
