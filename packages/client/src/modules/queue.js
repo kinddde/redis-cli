@@ -72,7 +72,9 @@ export default class MessageQueue {
                 if (!flag) {
                     const data = await self.dequeue();
 
-                    await listener(data, promises);
+                    if (!data) {
+                        await listener(data, promises);
+                    }
                 }
             }
 
