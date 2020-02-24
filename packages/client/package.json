@@ -36,5 +36,5 @@
         "@kin-common/redis-pool": "^0.0.26",
         "lodash": "^4.17.15"
     },
-    "gitHead": "d51ad6eec2e21cd5bf73938ca854cc89c5184de7"
+    "gitHead": "6757e636a93b3dd1cb75ef37e1f9135b72a3bb9b"
 }
