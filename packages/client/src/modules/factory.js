@@ -6,7 +6,11 @@ export const exchange = (client, method) => {
 };
 
 export const methodFactory = async (method, db, ...args) => {
-    const client = await pool.getClient();
+    const client = await pool.getClient().catch(() => null);
+
+    if (!client) {
+        return Promise.reject(null);
+    }
 
     await client.select(db);
 
