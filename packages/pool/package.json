@@ -35,5 +35,5 @@
         "generic-pool": "^3.7.1",
         "redis": "^2.8.0"
     },
-    "gitHead": "20e305544955c5c5be876ce6e1581ca49e6eb20c"
+    "gitHead": "d51ad6eec2e21cd5bf73938ca854cc89c5184de7"
 }
