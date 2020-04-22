@@ -33,7 +33,7 @@
     "dependencies": {
         "@babel/runtime-corejs3": "^7.7.6",
         "generic-pool": "^3.7.1",
-        "redis": "^2.8.0"
+        "redis": "^3.0.2"
     },
     "gitHead": "6757e636a93b3dd1cb75ef37e1f9135b72a3bb9b"
 }

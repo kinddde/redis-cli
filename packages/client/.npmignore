@@ -2,3 +2,4 @@ src
 build
 docs
 *.log
+yarn.lock
