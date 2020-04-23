@@ -53,3 +53,14 @@ export const rpush = (db, key, ...vals) => {
 export const llen = (db, key) => {
     return methodFactory("llen", db, key);
 };
+
+/**
+ * 移除列表元素
+ * @param  {number} db    数据库
+ * @param  {string} key   string
+ * @param  {any} value  删除的值
+ * @return {[type]}       [description]
+ */
+export const lrem = (db, key, value) => {
+    return methodFactory("llen", db, key, 0, encode(value));
+};
