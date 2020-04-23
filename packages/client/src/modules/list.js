@@ -59,8 +59,8 @@ export const llen = (db, key) => {
  * @param  {number} db    数据库
  * @param  {string} key   string
  * @param  {any} value  删除的值
- * @return {[type]}       [description]
+ * @return {Promise}
  */
 export const lrem = (db, key, value) => {
-    return methodFactory("llen", db, key, 0, encode(value));
+    return methodFactory("lrem", db, key, 0, encode(value));
 };

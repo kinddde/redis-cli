@@ -17,6 +17,9 @@
 <dt><a href="#llen">llen</a> ⇒ <code>Promise</code></dt>
 <dd><p>获取列表长度</p>
 </dd>
+<dt><a href="#lrem">lrem</a> ⇒ <code>Promise</code></dt>
+<dd><p>移除列表元素</p>
+</dd>
 </dl>
 
 <a name="lpop"></a>
@@ -84,4 +87,17 @@
 | --- | --- | --- |
 | db | <code>number</code> | 数据库 |
 | key | <code>string</code> | key |
+
+<a name="lrem"></a>
+
+## lrem ⇒ <code>Promise</code>
+移除列表元素
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| db | <code>number</code> | 数据库 |
+| key | <code>string</code> | string |
+| value | <code>any</code> | 删除的值 |
 
