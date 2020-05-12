@@ -88,3 +88,25 @@ export const hmset = async (db, key, obj) => {
 export const hset = async (db, key, field, value) => {
     return methodFactory("hset", db, key, field, encode(value));
 };
+
+/**
+ * 删除一个或多个哈希表字段
+ * @param  {number}  db    数据库
+ * @param  {string}  key   key
+ * @param  {string}  fields field1,field2
+ * @return {Promise}
+ */
+export const hdel = async (db, key, ...fields) => {
+    return methodFactory("hdel", db, key, ...fields);
+};
+
+/**
+ * 查看哈希表的指定字段是否存在。
+ * @param  {number}  db    数据库
+ * @param  {string}  key   key
+ * @param  {string}  field 字段
+ * @return {Promise}
+ */
+export const hexists = async (db, key, field) => {
+    return methodFactory("hexists", db, key, field);
+};
