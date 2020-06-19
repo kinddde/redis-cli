@@ -82,6 +82,7 @@ export default class MessageQueue {
 
             if (promises.length) {
                 await Promise.all(promises).then(complated);
+                
             }
 
             promises = [];
