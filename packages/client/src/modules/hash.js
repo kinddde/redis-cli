@@ -110,3 +110,37 @@ export const hdel = async (db, key, ...fields) => {
 export const hexists = async (db, key, field) => {
     return methodFactory("hexists", db, key, field);
 };
+
+/**
+ * 命令用于获取哈希表中字段的数量
+ * @param  {number}  db    数据库
+ * @param  {string}  key   key
+ * @return {Promise}
+ */
+export const hlen = async (db, key) => {
+    return methodFactory("hlen", db, key);
+};
+
+/**
+ * 为哈希表 key 中的指定字段的整数值加上增量 increment 。
+ * @param  {number}  db    数据库
+ * @param  {string}  key   key
+ * @param  {string}  field 字段
+ * @param  {number}  increment 字段
+ * @return {Promise}
+ */
+export const hincrby = async (db, key, field, increment) => {
+    return methodFactory("hincrby", db, key, field, increment);
+};
+
+/**
+ * 为哈希表 key 中的指定字段的浮点数值加上增量 increment
+ * @param  {number}  db    数据库
+ * @param  {string}  key   key
+ * @param  {string}  field 字段
+ * @param  {number}  increment 字段
+ * @return {Promise}
+ */
+export const hincrbyfloat = async (db, key, field, increment) => {
+    return methodFactory("hincrbyfloat", db, key, field, increment);
+};

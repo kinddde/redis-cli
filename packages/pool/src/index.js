@@ -7,7 +7,6 @@ const defaultOptions = {
     min: 2, // minimum size of the pool
 };
 
-
 class RedisPool {
     constructor(config, options) {
         if (!config) {
