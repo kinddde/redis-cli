@@ -73,7 +73,7 @@ export const lrem = (db, key, value) => {
  * @return {Promise}
  */
 export const lindex = (db, key, index) => {
-    return methodFactory("lindex", db, key, index);
+    return methodFactory("lindex", db, key, index).then(decode);
 };
 
 /**
@@ -85,5 +85,7 @@ export const lindex = (db, key, index) => {
  * @return {Promise}
  */
 export const lrange = (db, key, start, stop) => {
-    return methodFactory("lrange", db, key, start, stop);
+    return methodFactory("lrange", db, key, start, stop).then(res =>
+        res.map(decode)
+    );
 };
