@@ -64,3 +64,26 @@ export const llen = (db, key) => {
 export const lrem = (db, key, value) => {
     return methodFactory("lrem", db, key, 0, encode(value));
 };
+
+/**
+ * 通过索引获取列表中的元素
+ * @param  {number} db    数据库
+ * @param  {string} key   string
+ * @param  {number} index  索引
+ * @return {Promise}
+ */
+export const lindex = (db, key, index) => {
+    return methodFactory("lindex", db, key, index);
+};
+
+/**
+ * 获取列表指定范围内的元素
+ * @param  {number} db    数据库
+ * @param  {string} key   string
+ * @param  {number} start  开始
+ * @param  {number} stop  结束
+ * @return {Promise}
+ */
+export const lrange = (db, key, start, stop) => {
+    return methodFactory("lrange", db, key, start, stop);
+};

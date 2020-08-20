@@ -20,6 +20,12 @@
 <dt><a href="#lrem">lrem</a> ⇒ <code>Promise</code></dt>
 <dd><p>移除列表元素</p>
 </dd>
+<dt><a href="#lindex">lindex</a> ⇒ <code>Promise</code></dt>
+<dd><p>通过索引获取列表中的元素</p>
+</dd>
+<dt><a href="#lrange">lrange</a> ⇒ <code>Promise</code></dt>
+<dd><p>获取列表指定范围内的元素</p>
+</dd>
 </dl>
 
 <a name="lpop"></a>
@@ -100,4 +106,31 @@
 | db | <code>number</code> | 数据库 |
 | key | <code>string</code> | string |
 | value | <code>any</code> | 删除的值 |
+
+<a name="lindex"></a>
+
+## lindex ⇒ <code>Promise</code>
+通过索引获取列表中的元素
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| db | <code>number</code> | 数据库 |
+| key | <code>string</code> | string |
+| index | <code>number</code> | 索引 |
+
+<a name="lrange"></a>
+
+## lrange ⇒ <code>Promise</code>
+获取列表指定范围内的元素
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| db | <code>number</code> | 数据库 |
+| key | <code>string</code> | string |
+| start | <code>number</code> | 开始 |
+| stop | <code>number</code> | 结束 |
 
